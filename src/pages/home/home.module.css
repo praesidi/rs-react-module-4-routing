@@ -1,0 +1,68 @@
+.page {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.logo_wrapper {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo_wrapper > img {
+  height: 100px;
+}
+
+.link_wrapper {
+  flex: 1;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+
+  color: white;
+  font-size: 64px;
+  font-family: "RicknMorty", "Brush Script MT", cursive;
+  cursor: pointer;
+}
+
+.link_wrapper:hover {
+  flex: 3;
+}
+
+.link_wrapper:visited {
+  cursor: pointer;
+}
+
+.characters {
+  background-color: #35c9dd;
+  background: linear-gradient(#b8b8b8, #b8b8b8),
+    center / cover no-repeat url("./images/characters.webp");
+  background-blend-mode: difference;
+}
+
+.episodes {
+  background-color: #87d1db;
+  background: linear-gradient(#b8b8b8, #b8b8b8),
+    center / cover no-repeat url("./images/episodes.webp");
+  background-blend-mode: difference;
+}
+
+.locations {
+  background-color: #a9f3fd;
+  background: linear-gradient(#b8b8b8, #b8b8b8),
+    center / cover no-repeat url("./images/locations.webp");
+  background-blend-mode: difference;
+}
