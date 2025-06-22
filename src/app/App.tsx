@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router";
-import { Home } from "./pages/home/home";
-import { Page404 } from "./pages/page-404/page-404";
-import { Category } from "./pages/category/category";
-import { Item } from "./pages/item/item";
+import { Home } from "../pages/home/home";
+import { Page404 } from "../pages/page-404/page-404";
+import { Category } from "../pages/category/category";
+import { Item } from "../pages/item/item";
 
 function App() {
   return (
