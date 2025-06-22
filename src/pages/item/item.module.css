@@ -1,0 +1,43 @@
+.loader_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.title {
+  text-transform: capitalize;
+  font-family: "RicknMorty", "Brush Script MT", cursive;
+}
+
+.container {
+  min-width: 320px;
+  max-width: 540px;
+  font-family: monospace;
+}
+
+.item_name {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.description {
+}
+
+.image {
+  height: 240px;
+  min-width: 240px;
+}
+
+.image > img {
+  height: 100%;
+}
