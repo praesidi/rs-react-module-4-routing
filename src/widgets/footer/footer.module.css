@@ -1,0 +1,16 @@
+.footer {
+  font-family: "RicknMorty", "Brush Script MT", cursive;
+  letter-spacing: 2px;
+  margin-top: auto;
+}
+
+.footer a {
+  transition: 0.3s;
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.footer a:hover {
+  scale: 1.1;
+  color: #bedd43;
+}
