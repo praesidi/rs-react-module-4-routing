@@ -1,4 +1,4 @@
-type Category = "locations" | "episodes" | "characters";
+type Category = "locations" | "episodes" | "characters" | string;
 
 interface AppRoutes {
   home: string;
