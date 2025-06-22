@@ -1,3 +1,10 @@
+.loader_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
 .title {
   text-transform: capitalize;
   font-family: "RicknMorty", "Brush Script MT", cursive;

@@ -1,8 +1,5 @@
 import styles from "./category.module.css";
 import { Link, useParams } from "react-router";
-import { BasicLayout } from "../../shared/components/basic-layout/basic-layout";
-import { Footer } from "../../widgets/footer/footer";
-import { Header } from "../../widgets/header/header";
 import { Grid, Item } from "../../widgets/grid/grid";
 import { useFakeFetch } from "../../shared/hooks/useFakeFetch";
 import { Loader } from "../../shared/components/loader/loader";
@@ -10,6 +7,7 @@ import { useCallback } from "react";
 import type { Location } from "../../entities/location";
 import type { Character } from "../../entities/character";
 import type { Episode } from "../../entities/episode";
+import { internalPaths } from "../../shared/constants/routes";
 
 type Entity = Character | Location | Episode;
 
@@ -19,12 +17,13 @@ export const Category = () => {
   const { category } = useParams();
   const { data, isLoading } = useFakeFetch<Entity>(category);
 
-  console.log(category);
-  console.log(isLoading, data);
-
   const getContent = useCallback(() => {
     if (isLoading) {
-      return <Loader />;
+      return (
+        <div className={styles.loader_container}>
+          <Loader />
+        </div>
+      );
     }
 
     if (data === null || data.length === 0) {
@@ -39,7 +38,10 @@ export const Category = () => {
       <Grid>
         {data.map((item) => {
           return (
-            <Link key={item.id} to={`${item.id}`}>
+            <Link
+              key={item.id}
+              to={internalPaths.item(category, String(item.id))}
+            >
               <Item>
                 <h3>{item.name}</h3>
                 <p>{item.id}</p>
@@ -53,10 +55,8 @@ export const Category = () => {
 
   return (
     <>
-      <BasicLayout headerSlot={<Header />} footerSlot={<Footer />}>
-        <h1 className={styles.title}>{category}</h1>
-        <>{getContent()}</>
-      </BasicLayout>
+      <h1 className={styles.title}>{category}</h1>
+      <>{getContent()}</>
     </>
   );
 };
