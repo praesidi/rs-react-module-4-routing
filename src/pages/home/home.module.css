@@ -30,7 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.5s;
+  transition: ease-out 0.5s;
 
   color: white;
   font-size: 64px;
@@ -49,20 +49,20 @@
 .characters {
   background-color: #35c9dd;
   background: linear-gradient(#b8b8b8, #b8b8b8),
-    center / cover no-repeat url("./images/characters.webp");
+    center / cover no-repeat url("/images/characters.webp");
   background-blend-mode: difference;
 }
 
 .episodes {
   background-color: #87d1db;
   background: linear-gradient(#b8b8b8, #b8b8b8),
-    center / cover no-repeat url("./images/episodes.webp");
+    center / cover no-repeat url("/images/episodes.webp");
   background-blend-mode: difference;
 }
 
 .locations {
   background-color: #a9f3fd;
   background: linear-gradient(#b8b8b8, #b8b8b8),
-    center / cover no-repeat url("./images/locations.webp");
+    center / cover no-repeat url("/images/locations.webp");
   background-blend-mode: difference;
 }

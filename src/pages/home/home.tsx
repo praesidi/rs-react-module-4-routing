@@ -1,3 +1,4 @@
+import { internalPaths } from "../../shared/constants/routes";
 import styles from "./home.module.css";
 import { Link } from "react-router";
 
@@ -10,21 +11,21 @@ export const Home = () => {
         </div>
         <nav className={styles.navbar}>
           <Link
-            to="/characters"
+            to={internalPaths.category("characters")}
             className={`${styles.link_wrapper} ${styles.characters}`}
           >
             <span>Characters</span>
           </Link>
 
           <Link
-            to="/episodes"
+            to={internalPaths.category("episodes")}
             className={`${styles.link_wrapper} ${styles.episodes}`}
           >
             Episodes
           </Link>
 
           <Link
-            to="/locations"
+            to={internalPaths.category("locations")}
             className={`${styles.link_wrapper} ${styles.locations}`}
           >
             Locations
