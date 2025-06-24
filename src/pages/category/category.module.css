@@ -9,3 +9,23 @@
   text-transform: capitalize;
   font-family: "RicknMorty", "Brush Script MT", cursive;
 }
+
+.content {
+  margin-bottom: 64px;
+  max-width: 900px;
+}
+
+.item_id {
+  color: #808279;
+  padding: 0 4px;
+  vertical-align: top;
+}
+
+.select_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 800px;
+  width: 100%;
+  margin-bottom: 32px;
+}
