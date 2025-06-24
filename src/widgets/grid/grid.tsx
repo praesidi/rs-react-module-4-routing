@@ -3,14 +3,12 @@ import styles from "./grid.module.css";
 
 interface GridProps {
   children: ReactNode | ReactNode[];
-  columns?: number;
-  gap?: string;
-  className?: string;
+  className: string | null;
 }
 
-export const Grid = ({ children }: GridProps) => {
+export const Grid = ({ children, className = null }: GridProps) => {
   return (
-    <div className={styles.grid_container}>
+    <div className={`${styles.grid_container} ${className ?? className}`}>
       <div className={styles.grid}>{children}</div>
     </div>
   );
