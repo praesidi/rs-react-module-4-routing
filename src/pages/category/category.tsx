@@ -25,8 +25,7 @@ export const Category = () => {
   const { category } = useParams();
   const { data, isLoading } = useFakeFetch<Entity>(category);
   const [sortedData, setSortedData] = useState<Entity[] | null>(null);
-  const [selectedOption, setSelectedOption] =
-    useState<SingleValue<Option>>(null);
+  const [selectedOption, setSelectedOption] = useState<SingleValue<Option>>(null);
 
   useEffect(() => {
     let sorted = data;
@@ -35,15 +34,13 @@ export const Category = () => {
       switch (selectedOption?.value) {
         case "create_asc":
           sorted = data.sort(
-            (cur, next) =>
-              new Date(next.created).getTime() - new Date(cur.created).getTime()
+            (cur, next) => new Date(next.created).getTime() - new Date(cur.created).getTime()
           );
           break;
 
         case "create_desc":
           sorted = data.sort(
-            (cur, next) =>
-              new Date(cur.created).getTime() - new Date(next.created).getTime()
+            (cur, next) => new Date(cur.created).getTime() - new Date(next.created).getTime()
           );
           break;
 
@@ -57,7 +54,6 @@ export const Category = () => {
   }, [data, selectedOption?.value]);
 
   const handleFilterUpdate = useCallback((newVal: SingleValue<Option>) => {
-    console.log(newVal);
     setSelectedOption(newVal);
   }, []);
 
@@ -78,30 +74,7 @@ export const Category = () => {
       return <p>Category {category} doesn't exist</p>;
     }
 
-    return (
-      <Grid className={styles.content}>
-        {sortedData?.map((item) => {
-          return (
-            <Link
-              key={item.id}
-              to={internalPaths.item(category, String(item.id))}
-            >
-              <Item>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <h3>{item.name}</h3>
-                    <p className={styles.item_id}>[{item.id}]</p>
-                  </div>
-                  <p className={styles.item_id}>
-                    created: [{formatDate(item.created, "dd.mm.yyyy")}]
-                  </p>
-                </div>
-              </Item>
-            </Link>
-          );
-        })}
-      </Grid>
-    );
+    return <CategoryContent data={sortedData} category={category} />;
   }, [category, sortedData, isLoading]);
 
   return (
@@ -117,5 +90,34 @@ export const Category = () => {
       </div>
       <>{getContent()}</>
     </>
+  );
+};
+
+interface CategoryContentProps {
+  data: Entity[];
+  category: string;
+}
+
+const CategoryContent = ({ data, category }: CategoryContentProps) => {
+  return (
+    <Grid className={styles.content}>
+      {data?.map((item) => {
+        return (
+          <Link key={item.id} to={internalPaths.item(category, String(item.id))}>
+            <Item>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <h3>{item.name}</h3>
+                  <p className={styles.item_id}>[{item.id}]</p>
+                </div>
+                <p className={styles.item_id}>
+                  created: [{formatDate(item.created, "dd.mm.yyyy")}]
+                </p>
+              </div>
+            </Item>
+          </Link>
+        );
+      })}
+    </Grid>
   );
 };
