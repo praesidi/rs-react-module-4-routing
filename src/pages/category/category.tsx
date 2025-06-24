@@ -48,6 +48,7 @@ export const Category = () => {
           break;
 
         default:
+          sorted = data;
           break;
       }
     }
