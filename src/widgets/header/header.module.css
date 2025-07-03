@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  padding: 12px 24px;
+}
+
+.left > img {
+  height: 64px;
+}
+
+.navbar {
+  display: flex;
+  gap: 8px;
+  font-family: "RicknMorty", "Brush Script MT", cursive;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.navbar a {
+  line-height: 2rem;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  scale: 1.1;
+}
