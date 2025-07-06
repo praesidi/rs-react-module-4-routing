@@ -2,19 +2,12 @@ import { useEffect, useState } from "react";
 import EpisodesMockData from "../mocks/episode.json";
 import CharactersMockData from "../mocks/characters.json";
 import LocationsMockData from "../mocks/location.json";
+import { getRandomTimeoutMs } from "../utils/delay";
 
 interface ReturnValue<T> {
   data: T[] | null;
   isLoading: boolean;
 }
-
-// from 0.1s to 2s
-const getRandomTimeoutMs = () => {
-  const randomNum = Math.floor(Math.random() * 2000) + 1;
-  const roundToHundredths = Math.ceil(randomNum * 100) / 100;
-
-  return roundToHundredths;
-};
 
 export function useFakeFetch<T extends { id: number }>(
   url: string | undefined,
@@ -49,15 +42,12 @@ export function useFakeFetch<T extends { id: number }>(
         }
 
         if (itemID !== null) {
-          dataResponse = dataResponse.filter(
-            (item) => String(item.id) === String(itemID)
-          );
+          dataResponse = dataResponse.filter((item) => String(item.id) === String(itemID));
         }
 
         setData(dataResponse as T[]);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : "An unknown error occurred";
+        const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
 
         console.error("error has occurred while loading data");
         throw new Error(errorMessage);
