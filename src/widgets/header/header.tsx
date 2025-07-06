@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import styles from "./header.module.css";
-import { internalPaths } from "../../app/providers/router/routes";
+import { internalPaths } from "../../shared/constants/routes";
 import { Button } from "../../shared/components/button/button";
 import { useAuth } from "../../app/providers/auth/auth";
 

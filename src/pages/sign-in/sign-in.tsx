@@ -4,7 +4,7 @@ import { useAuth } from "../../app/providers/auth/auth";
 import { useLocation, useNavigate } from "react-router";
 import LoginImage from "/images/login.png";
 import { Button } from "../../shared/components/button/button";
-import { internalPaths } from "../../app/providers/router/routes";
+import { internalPaths } from "../../shared/constants/routes";
 
 export const SignIn = () => {
   const location = useLocation();
