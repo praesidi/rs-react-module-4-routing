@@ -21,7 +21,7 @@ interface ItemProps {
 export const Item = ({ children }: ItemProps) => {
   return (
     <>
-      <div className={styles.item_container}>{children}</div>
+      <div className={styles.item_wrapper}>{children}</div>
     </>
   );
 };

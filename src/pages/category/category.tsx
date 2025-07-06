@@ -103,10 +103,14 @@ const CategoryContent = ({ data, category }: CategoryContentProps) => {
     <Grid className={styles.content}>
       {data?.map((item) => {
         return (
-          <Link key={item.id} to={internalPaths.item(category, String(item.id))}>
+          <Link
+            key={item.id}
+            to={internalPaths.item(category, String(item.id))}
+            className={styles.item_wrapper}
+          >
             <Item>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{ display: "flex", justifyContent: "center" }}>
+              <div className={styles.item_content}>
+                <div className={styles.item_header}>
                   <h3>{item.name}</h3>
                   <p className={styles.item_id}>[{item.id}]</p>
                 </div>
