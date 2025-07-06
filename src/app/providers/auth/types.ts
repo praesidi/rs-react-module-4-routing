@@ -10,5 +10,5 @@ export interface AuthValue {
   loading?: boolean;
   error?: string;
   signin: (log: string, pass: string, callback?: () => void) => void;
-  signout: (toPath?: string, replace?: boolean) => void;
+  signout: (toPath?: string, replace?: boolean, callback?: () => void) => void;
 }

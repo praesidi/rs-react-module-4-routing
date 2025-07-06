@@ -30,14 +30,6 @@ export const AuthProvider = ({ children }: Props) => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-
-    if (savedUser !== null) {
-      setUser(JSON.parse(savedUser) as User);
-    }
-  }, []);
-
   const signin = async (login: string, password: string, callback?: () => void) => {
     try {
       setLoading(true);
@@ -66,12 +58,13 @@ export const AuthProvider = ({ children }: Props) => {
       setLoading(false);
 
       if (callback) {
+        console.log("callback called");
         callback();
       }
     }
   };
 
-  const signout = (toPath?: string, replace?: boolean) => {
+  const signout = (toPath?: string, replace?: boolean, callback?: () => void) => {
     setUser(null);
     localStorage.removeItem("user");
 
@@ -79,7 +72,23 @@ export const AuthProvider = ({ children }: Props) => {
       console.log(toPath, { replace: replace });
       navigate(toPath, { replace: replace });
     }
+
+    if (callback) {
+      callback();
+    }
   };
+
+  useEffect(() => {
+    const savedUserLocStorage = localStorage.getItem("user");
+
+    if (savedUserLocStorage !== null) {
+      const savedUser = JSON.parse(savedUserLocStorage) as User;
+      setUser(savedUser);
+      signin(savedUser?.login, savedUser?.password);
+    }
+  }, []);
+
+  console.log(user);
 
   const value = {
     user,

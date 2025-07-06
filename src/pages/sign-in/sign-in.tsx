@@ -1,5 +1,5 @@
 import styles from "./sign-in.module.css";
-import type { FormEvent } from "react";
+import { useEffect, type FormEvent } from "react";
 import { useAuth } from "../../app/providers/auth/auth";
 import { useLocation, useNavigate } from "react-router";
 import LoginImage from "/images/login.png";
@@ -12,6 +12,12 @@ export const SignIn = () => {
   const auth = useAuth();
 
   const fromPath = location.state?.from || internalPaths.home;
+
+  useEffect(() => {
+    if (auth?.user !== null) {
+      navigate(fromPath, { replace: true });
+    }
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
