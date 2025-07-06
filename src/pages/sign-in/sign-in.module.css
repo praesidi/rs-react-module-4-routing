@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "RicknMorty", "Brush Script MT", cursive;
+}
+
+.image_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+}
+
+.image_wrapper img {
+  height: 100%;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 18px;
+  font-size: 42px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 400px;
+}
+
+.input_wrapper input {
+  min-width: 300px;
+  padding: 4px;
+}
+
+.submit_button_wrapper {
+  margin-top: 24px;
+}
+
+.submit_button_wrapper button {
+  font-size: 16px;
+  height: 40px;
+}
+
+.submit_button_wrapper button:hover {
+  background-color: #bfde42;
+}
+
+.submit_button_wrapper button:active {
+  scale: 0.99;
+}
+
+.error {
+  color: rgb(233, 58, 27);
+}
