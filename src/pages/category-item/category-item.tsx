@@ -1,4 +1,4 @@
-import styles from "./item.module.css";
+import styles from "./category-item.module.css";
 import { useParams } from "react-router";
 import { Loader } from "../../shared/components/loader/loader";
 import { useFakeFetch } from "../../shared/hooks/useFakeFetch";
@@ -11,7 +11,7 @@ import { formatDate } from "../../shared/utils/date";
 
 type Entity = Character | Location | Episode;
 
-export const Item = () => {
+export const CategoryItem = () => {
   const { category, id } = useParams();
   const { data, isLoading } = useFakeFetch<Entity>(category, id);
 
@@ -37,10 +37,7 @@ export const Item = () => {
     const filteredItemProperties = Object.keys(data[0]).filter(
       (key: string) => key !== "name" && key !== "image"
     );
-    const hasImageProperty = Object.prototype.hasOwnProperty.call(
-      categoryItem,
-      "image"
-    );
+    const hasImageProperty = Object.prototype.hasOwnProperty.call(categoryItem, "image");
 
     if (hasImageProperty && categoryItem["image" as keyof Entity]) {
       imgSrc = categoryItem["image" as keyof Entity] as string;
