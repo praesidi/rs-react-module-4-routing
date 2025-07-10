@@ -8,11 +8,6 @@
   padding: 12px 24px;
 }
 
-.header a:visited {
-  text-decoration: none;
-  color: inherit;
-}
-
 .left > img {
   height: 64px;
 }
@@ -27,11 +22,15 @@
 
 .navbar a {
   line-height: 2rem;
+  color: inherit;
 }
 
 .navbar a:hover {
-  text-decoration: underline;
   scale: 1.1;
+}
+
+.navbar a:visited {
+  text-decoration: none;
 }
 
 .sign_out_button_wrapper {
