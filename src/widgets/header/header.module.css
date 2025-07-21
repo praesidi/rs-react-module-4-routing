@@ -22,9 +22,28 @@
 
 .navbar a {
   line-height: 2rem;
+  color: inherit;
 }
 
 .navbar a:hover {
-  text-decoration: underline;
   scale: 1.1;
+}
+
+.navbar a:visited {
+  text-decoration: none;
+}
+
+.sign_out_button_wrapper {
+  display: block;
+  margin-left: 16px;
+  font-size: 1rem;
+  height: 32px;
+}
+
+.sign_out_button:hover {
+  background-color: #bfde42;
+}
+
+.sign_out_button:active {
+  scale: 0.99;
 }

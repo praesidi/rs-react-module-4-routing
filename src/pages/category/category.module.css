@@ -21,6 +21,20 @@
   vertical-align: top;
 }
 
+.item_wrapper {
+  text-decoration: none;
+}
+
+.item_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.item_header {
+  display: flex;
+  justify-content: center;
+}
+
 .select_wrapper {
   display: flex;
   align-items: center;

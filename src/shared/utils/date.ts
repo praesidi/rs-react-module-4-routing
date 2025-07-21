@@ -1,23 +1,16 @@
 type DotFormat = "dd.mm.yyyy" | "mm.yyyy" | "dd.mm.yy" | "mm.yy" | "yyyy.mm.dd";
-type SlashFormat =
-  | "dd/mm/yyyy"
-  | "mm/yyyy"
-  | "dd/mm/yy"
-  | "mm/yy"
-  | "yyyy/mm/dd";
-type DashFormat =
-  | "dd-mm-yyyy"
-  | "mm-yyyy"
-  | "dd-mm-yy"
-  | "mm-yy"
-  | "yyyy-mm-dd";
+type SlashFormat = "dd/mm/yyyy" | "mm/yyyy" | "dd/mm/yy" | "mm/yy" | "yyyy/mm/dd";
+type DashFormat = "dd-mm-yyyy" | "mm-yyyy" | "dd-mm-yy" | "mm-yy" | "yyyy-mm-dd";
 
 type Format = DotFormat | SlashFormat | DashFormat;
 
-export const formatDate = (
-  date: string | Date | null,
-  format: Format
-): string => {
+/** 
+  Formats the passed date to a selected format 
+  @param {string | Date | null} date - date
+  @param {Format} format - date format to use
+  @returns {string} formatted date
+*/
+export const formatDate = (date: string | Date | null, format: Format): string => {
   if (date === null) return "";
 
   const today = new Date(date);
