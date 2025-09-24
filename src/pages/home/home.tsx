@@ -1,10 +1,11 @@
+import ErrorBoundary from "../../shared/components/error-boundary/error-boundary";
 import { internalPaths } from "../../shared/constants/routes";
 import styles from "./home.module.css";
 import { Link } from "react-router";
 
 export const Home = () => {
   return (
-    <>
+    <ErrorBoundary>
       <div className={styles.page}>
         <div className={styles.logo_wrapper}>
           <img src="./images/logo.png" alt="logo" />
@@ -32,6 +33,6 @@ export const Home = () => {
           </Link>
         </nav>
       </div>
-    </>
+    </ErrorBoundary>
   );
 };

@@ -11,6 +11,7 @@ import { useFakeFetch } from "../../shared/hooks/useFakeFetch";
 import { Loader } from "../../shared/components/loader/loader";
 import { internalPaths } from "../../shared/constants/routes";
 import { Select, type Option } from "../../shared/components/select/select";
+import ErrorBoundary from "../../shared/components/error-boundary/error-boundary";
 
 type Entity = Character | Location | Episode;
 
@@ -57,28 +58,8 @@ export const Category = () => {
     setSelectedOption(newVal);
   }, []);
 
-  const getContent = useCallback(() => {
-    if (isLoading) {
-      return (
-        <div className={styles.loader_container}>
-          <Loader />
-        </div>
-      );
-    }
-
-    if (sortedData === null || sortedData.length === 0) {
-      return <p>Data Not Found</p>;
-    }
-
-    if (category === undefined || entities.indexOf(category) === -1) {
-      return <p>Category {category} doesn't exist</p>;
-    }
-
-    return <CategoryContent data={sortedData} category={category} />;
-  }, [category, sortedData, isLoading]);
-
   return (
-    <>
+    <ErrorBoundary>
       <h1 className={styles.title}>{category}</h1>
       <div className={styles.select_wrapper}>
         <Select
@@ -88,10 +69,40 @@ export const Category = () => {
           onChange={handleFilterUpdate}
         />
       </div>
-      <>{getContent()}</>
-    </>
+      <PageContent 
+        category={category}
+        sortedData={sortedData}
+        isLoading={isLoading}
+      />
+    </ErrorBoundary>
   );
 };
+
+interface PageContentProps {
+  category: string | undefined;
+  sortedData: Entity[] | null;
+  isLoading: boolean;
+}
+
+const PageContent: React.FC<PageContentProps> = ({category, sortedData, isLoading}) => {
+  if (isLoading) {
+    return (
+      <div className={styles.loader_container}>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (sortedData === null || sortedData.length === 0) {
+    return <p>Data Not Found</p>;
+  }
+
+  if (category === undefined || entities.indexOf(category) === -1) {
+    return <p>Category {category} doesn't exist</p>;
+  }
+
+  return <CategoryContent data={sortedData} category={category} />;
+}
 
 interface CategoryContentProps {
   data: Entity[];

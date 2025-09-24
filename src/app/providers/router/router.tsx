@@ -1,22 +1,36 @@
 import { PrivateRoute } from "../../../shared/components/private-route/private-route";
 import { Routes, Route } from "react-router";
-import { CategoryItem } from "../../../pages/category-item/category-item";
-import { Category } from "../../../pages/category/category";
-import { Home } from "../../../pages/home/home";
-import { Page404 } from "../../../pages/page-404/page-404";
-import { SignIn } from "../../../pages/sign-in/sign-in";
-import { Layout } from "../../../shared/components/layout/layout";
+import { lazy, Suspense } from "react";
+import { Loader } from "../../../shared/components/loader/loader";
+
+const Home = lazy(() => import('../../../pages/home/home').then(module => ({default: module.Home})));
+const Category = lazy(() => import('../../../pages/category/category').then(module => ({default: module.Category})));
+const CategoryItem = lazy(() => import('../../../pages/category-item/category-item').then(module => ({default: module.CategoryItem})));
+const SignIn = lazy(() => import('../../../pages/sign-in/sign-in').then(module => ({default: module.SignIn})));
+const Page404 = lazy(() => import('../../../pages/page-404/page-404').then(module => ({default: module.Page404})));
+const Layout = lazy(() => import('../../../shared/components/layout/layout').then(module => ({default: module.Layout})));
 
 export const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {/* home */}
+      <Route 
+        path="/"
+        element={
+          <Suspense fallback={<Loader fullscreen/>}>
+            <Home />
+          </Suspense>
+        }
+      />
 
+      {/* category / item */}
       <Route
         path="/:category"
         element={
           <PrivateRoute>
-            <Layout />
+            <Suspense fallback={<Loader fullscreen/>}>
+              <Layout />
+            </Suspense>
           </PrivateRoute>
         }
       >
@@ -24,8 +38,25 @@ export const Router = () => {
         <Route path=":id" element={<CategoryItem />} />
       </Route>
 
-      <Route path="sign_in" element={<SignIn />} />
-      <Route path="*" element={<Page404 />} />
+      {/* sign in */}
+      <Route
+        path="sign_in"
+        element={
+          <Suspense fallback={<Loader fullscreen/>}>
+            <SignIn />
+          </Suspense>
+        }
+      />
+
+      {/* 404 */}
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<Loader fullscreen/>}>
+            <Page404 />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 };

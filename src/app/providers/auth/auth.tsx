@@ -1,7 +1,7 @@
 import UsersFakeDB from "../../../shared/mocks/users.json";
 import type { User } from "../../../entities/user";
 import { getRandomTimeoutMs } from "../../../shared/utils/delay";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { errorMessages } from "./consts";
 import { useNavigate } from "react-router";
 import type { AuthValue, Props } from "./types";
@@ -19,15 +19,10 @@ const findUser = async (login: string): Promise<User | null> => {
 
 const AuthContext = createContext<AuthValue | null>(null);
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
 export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const signin = async (login: string, password: string, callback?: () => void) => {
@@ -58,7 +53,6 @@ export const AuthProvider = ({ children }: Props) => {
       setLoading(false);
 
       if (callback) {
-        console.log("callback called");
         callback();
       }
     }
@@ -69,7 +63,6 @@ export const AuthProvider = ({ children }: Props) => {
     localStorage.removeItem("user");
 
     if (toPath) {
-      console.log(toPath, { replace: replace });
       navigate(toPath, { replace: replace });
     }
 
@@ -79,16 +72,19 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    const savedUserLocStorage = localStorage.getItem("user");
+    const savedUser = localStorage.getItem("user");
 
-    if (savedUserLocStorage !== null) {
-      const savedUser = JSON.parse(savedUserLocStorage) as User;
-      setUser(savedUser);
-      signin(savedUser?.login, savedUser?.password);
+    if (savedUser) {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch (error) {
+        console.error(error);
+        localStorage.removeItem("user");
+      }
     }
-  }, []);
 
-  console.log(user);
+    setLoading(false);
+  }, []);
 
   const value = {
     user,
