@@ -11,7 +11,6 @@ import { useFakeFetch } from "../../shared/hooks/useFakeFetch";
 import { Loader } from "../../shared/components/loader/loader";
 import { internalPaths } from "../../shared/constants/routes";
 import { Select, type Option } from "../../shared/components/select/select";
-import ErrorBoundary from "../../shared/components/error-boundary/error-boundary";
 
 type Entity = Character | Location | Episode;
 
@@ -59,7 +58,7 @@ export const Category = () => {
   }, []);
 
   return (
-    <ErrorBoundary>
+    <>
       <h1 className={styles.title}>{category}</h1>
       <div className={styles.select_wrapper}>
         <Select
@@ -74,7 +73,7 @@ export const Category = () => {
         sortedData={sortedData}
         isLoading={isLoading}
       />
-    </ErrorBoundary>
+    </>
   );
 };
 

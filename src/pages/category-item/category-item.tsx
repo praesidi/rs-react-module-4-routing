@@ -7,7 +7,6 @@ import type { Character } from "../../entities/character";
 import type { Location } from "../../entities/location";
 import PlaceholderImage from "/images/placeholder.webp";
 import { formatDate } from "../../shared/utils/date";
-import ErrorBoundary from "../../shared/components/error-boundary/error-boundary";
 
 type Entity = Character | Location | Episode;
 
@@ -16,7 +15,7 @@ export const CategoryItem = () => {
   const { data, isLoading } = useFakeFetch<Entity>(category, id);
 
   return (
-    <ErrorBoundary>
+    <>
       <h1 className={styles.title}>{category}</h1>
       <PageContent
         id={id}
@@ -24,7 +23,7 @@ export const CategoryItem = () => {
         category={category}
         isLoading={isLoading}
       />
-    </ErrorBoundary>
+    </>
   );
 };
 

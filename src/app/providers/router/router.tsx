@@ -2,6 +2,7 @@ import { PrivateRoute } from "../../../shared/components/private-route/private-r
 import { Routes, Route } from "react-router";
 import { lazy, Suspense } from "react";
 import { Loader } from "../../../shared/components/loader/loader";
+import { ErrorBoundary } from "../../../shared/components/error-boundary/error-boundary";
 
 const Home = lazy(() => import('../../../pages/home/home').then(module => ({default: module.Home})));
 const Category = lazy(() => import('../../../pages/category/category').then(module => ({default: module.Category})));
@@ -18,7 +19,9 @@ export const Router = () => {
         path="/"
         element={
           <Suspense fallback={<Loader fullscreen/>}>
-            <Home />
+            <ErrorBoundary>
+              <Home />
+            </ErrorBoundary>
           </Suspense>
         }
       />
@@ -43,7 +46,9 @@ export const Router = () => {
         path="sign_in"
         element={
           <Suspense fallback={<Loader fullscreen/>}>
-            <SignIn />
+            <ErrorBoundary>
+              <SignIn />
+            </ErrorBoundary> 
           </Suspense>
         }
       />
@@ -53,7 +58,9 @@ export const Router = () => {
         path="*"
         element={
           <Suspense fallback={<Loader fullscreen/>}>
-            <Page404 />
+            <ErrorBoundary>
+              <Page404 />
+            </ErrorBoundary>
           </Suspense>
         }
       />
