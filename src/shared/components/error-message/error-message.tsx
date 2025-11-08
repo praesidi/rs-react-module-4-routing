@@ -22,7 +22,7 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
         className={iconCssClasses}
       >
         <svg
-          fill-rule="evenodd"
+          fillRule="evenodd"
           viewBox="64 64 896 896"
           focusable="false"
           data-icon="close-circle"

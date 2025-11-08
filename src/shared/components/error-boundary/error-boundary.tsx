@@ -1,5 +1,5 @@
 import React, { Component, type ReactNode } from 'react';
-import { ErrorMessage } from '../../error-message/error-message';
+import { ErrorMessage } from '../error-message/error-message';
 
 interface ErrorBoundaryState {
 	hasError: boolean;
@@ -17,9 +17,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 		this.state = { hasError: false };
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-        console.log(error);
+		console.log(error);
 		return {
 			hasError: true,
 		};
@@ -36,9 +35,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 				return this.props.fallback;
 			}
 
-			const errorMessage =
-				this.props.errorText ??
-				'При загрузке компонента что-то пошло не так';
+			const errorMessage = this.props.errorText ?? 'При загрузке компонента что-то пошло не так';
 
 			return (
 				<ErrorMessage

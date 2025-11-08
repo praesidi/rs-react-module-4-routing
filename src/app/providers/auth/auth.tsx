@@ -1,5 +1,5 @@
 import UsersFakeDB from "../../../shared/mocks/users.json";
-import type { User } from "../../../entities/user";
+import type { User } from "../../../models/user";
 import { getRandomTimeoutMs } from "../../../shared/utils/delay";
 import { createContext, useEffect, useState } from "react";
 import { errorMessages } from "./consts";

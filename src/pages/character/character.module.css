@@ -1,4 +1,5 @@
-.loader_container {
+.loader_container,
+.error_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,13 +29,4 @@
   flex-wrap: wrap-reverse;
   gap: 24px;
   margin-bottom: 32px;
-}
-
-.image {
-  height: 240px;
-  min-width: 240px;
-}
-
-.image > img {
-  height: 100%;
 }

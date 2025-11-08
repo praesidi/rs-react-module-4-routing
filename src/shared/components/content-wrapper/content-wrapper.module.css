@@ -1,0 +1,14 @@
+.container {
+  min-width: 320px;
+  max-width: 540px;
+  font-family: monospace;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  gap: 24px;
+  margin-bottom: 32px;
+}
