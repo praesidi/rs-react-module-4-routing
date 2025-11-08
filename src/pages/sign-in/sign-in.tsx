@@ -1,6 +1,6 @@
 import styles from "./sign-in.module.css";
 import { useEffect, type FormEvent } from "react";
-import { useAuth } from "../../app/providers/auth/auth";
+import { useAuth } from "../../app/providers/auth/useAuth";
 import { useLocation, useNavigate } from "react-router";
 import LoginImage from "/images/login.png";
 import { Button } from "../../shared/components/button/button";

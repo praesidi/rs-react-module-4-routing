@@ -1,8 +1,16 @@
 import styles from "./loader.module.css";
 
-export const Loader = () => {
+interface LoaderProps {
+  fullscreen?: boolean;
+}
+
+export const Loader: React.FC<LoaderProps> = ({ fullscreen }) => {
+  const wrapperCssClasses = fullscreen 
+    ? `${styles.wrapper} ${styles.fullscreen}`
+    : styles.wrapper;
+  
   return (
-    <div className={styles.wrapper}>
+    <div className={wrapperCssClasses}>
       <span className={styles.loader}></span>
     </div>
   );

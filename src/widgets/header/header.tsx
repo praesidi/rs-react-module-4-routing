@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import styles from "./header.module.css";
 import { internalPaths } from "../../shared/constants/routes";
 import { Button } from "../../shared/components/button/button";
-import { useAuth } from "../../app/providers/auth/auth";
+import { useAuth } from "../../app/providers/auth/useAuth";
 
 export const Header = () => {
   const auth = useAuth();
